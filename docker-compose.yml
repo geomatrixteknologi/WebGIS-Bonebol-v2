@@ -1,0 +1,74 @@
+version: "3.8"
+
+services:
+  backend_gis:
+    build:
+      context: ./backend_GIS
+      dockerfile: Dockerfile
+    image: backend_gis_bonebol:latest
+    container_name: backend_gis-bonebol
+    ports:
+      - "8170:8170"
+    restart: always
+    env_file:
+      - /opt/env/webgis_pbb/.env_webgis-pbb-bonebol_gis # Menggunakan .env file dari folder backend_GIS
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+    environment:
+      - REDIS_HOST=host.docker.internal
+      - REDIS_PORT=6379
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  backend_pbb:
+    build:
+      context: ./backend_PBB
+      dockerfile: Dockerfile
+    image: backend_pbb_bonebol:latest
+    container_name: backend_pbb-bonebol
+    ports:
+      - "8180:8180"
+    restart: always
+    env_file:
+      - /opt/env/webgis_pbb/.env_webgis-pbb-bonebol_pbb # Menggunakan .env file dari folder backend_PBB
+    volumes:
+      # Mount Oracle Client folder from Ubuntu Host -> Docker Container
+      - /opt/oracle/instantclient_19_31:/opt/oracle/instantclient_19_31
+    environment:
+      # Pada Linux, LD_LIBRARY_PATH sangat dibutuhkan agar Node.js dapat menemukan library Oracle
+      - LD_LIBRARY_PATH=/opt/oracle/instantclient_19_31:$LD_LIBRARY_PATH
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  # backend_ai:
+  #   build:
+  #     context: ./backend_AI
+  #     dockerfile: Dockerfile
+  #   image: backend_ai_bonebol:latest
+  #   container_name: backend_ai-bonebol
+  #   ports:
+  #     - "10010:10010"
+  #   restart: always
+  #   mem_limit: 768m
+  #   env_file:
+  #     - /opt/env/webgis_pbb/.env_webgis-pbb-bonebol_ai
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "5"
+  #   environment:
+  #     - BE_GIS_URL=http://backend_gis:8050
+  #     - BE_PBB_URL=http://backend_pbb:8060
+  #     - REDIS_URL=redis://host.docker.internal:6379
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
+  #   depends_on:
+  #     - backend_gis
+  #     - backend_pbb

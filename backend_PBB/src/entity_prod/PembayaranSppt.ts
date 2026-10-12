@@ -1,0 +1,127 @@
+import { Column, Entity } from "typeorm";
+
+@Entity("PEMBAYARAN_SPPT", { schema: process.env.DB_SCHEMA })
+export class PembayaranSppt {
+  @Column("char", { primary: true, name: "KD_PROPINSI", length: 2 })
+  kdPropinsi!: string;
+
+  @Column("char", { primary: true, name: "KD_DATI2", length: 2 })
+  kdDati2!: string;
+
+  @Column("char", { primary: true, name: "KD_KECAMATAN", length: 3 })
+  kdKecamatan!: string;
+
+  @Column("char", { primary: true, name: "KD_KELURAHAN", length: 3 })
+  kdKelurahan!: string;
+
+  @Column("char", { primary: true, name: "KD_BLOK", length: 3 })
+  kdBlok!: string;
+
+  @Column("char", { primary: true, name: "NO_URUT", length: 4 })
+  noUrut!: string;
+
+  @Column("char", { primary: true, name: "KD_JNS_OP", length: 1 })
+  kdJnsOp!: string;
+
+  @Column("char", { primary: true, name: "THN_PAJAK_SPPT", length: 4 })
+  thnPajakSppt!: string;
+
+  @Column("number", { primary: true, name: "PEMBAYARAN_SPPT_KE", precision: 2, scale: 0 })
+  pembayaranSpptKe!: string;
+
+  @Column("char", { name: "KD_KANWIL", nullable: true, length: 2 })
+  kdKanwil!: string | null;
+
+  @Column("char", { name: "KD_KANTOR", nullable: true, length: 2 })
+  kdKantor!: string | null;
+
+  @Column("char", { name: "KD_TP", nullable: true, length: 4 })
+  kdTp!: string | null;
+
+  @Column("char", { name: "KD_LP", nullable: true, length: 4 })
+  kdLp!: string | null;
+
+  @Column("number", {
+    name: "DENDA_SPPT",
+    nullable: true,
+    precision: 12,
+    scale: 0,
+  })
+  dendaSppt!: string | null;
+
+  @Column("number", {
+    name: "JML_SPPT_YG_DIBAYAR",
+    nullable: true,
+    precision: 15,
+    scale: 0,
+  })
+  jmlSpptYgDibayar!: string | null;
+
+  @Column("date", {
+    name: "TGL_PEMBAYARAN_SPPT",
+    nullable: true,
+  })
+  tglPembayaranSppt!: Date | null;
+
+  @Column("date", { name: "TGL_REKAM_BYR_SPPT" })
+  tglRekamByrSppt!: Date;
+
+  @Column("char", {
+    name: "NIP_REKAM_BYR_SPPT",
+    nullable: true,
+    length: 30,
+  })
+  nipRekamByrSppt!: string | null;
+
+  @Column("varchar2", { name: "NO_BUKTI", nullable: true, length: 30 })
+  noBukti!: string | null;
+
+  @Column("number", {
+    name: "PENGURANGAN",
+    nullable: true,
+    precision: 15,
+    scale: 0,
+  })
+  pengurangan!: string | null;
+
+  @Column("char", { name: "STATUS_H2H", nullable: true, length: 1 })
+  statusH2H!: string | null;
+
+  @Column("char", { name: "STAN", nullable: true, length: 6 })
+  stan!: string | null;
+
+  @Column("char", { name: "TGL_TRX", nullable: true, length: 10 })
+  tglTrx!: string | null;
+
+  @Column("date", { name: "TGL_REV", nullable: true })
+  tglRev!: Date | null;
+
+  @Column("char", { name: "PENGESAHAN", nullable: true, length: 16 })
+  pengesahan!: string | null;
+
+  @Column("char", { name: "FLAG_KIRIM", nullable: true, length: 1 })
+  flagKirim!: string | null;
+
+  @Column("number", {
+    name: "REV_FLAG",
+    nullable: true,
+    precision: 1000,
+    scale: 53,
+  })
+  revFlag!: string | null;
+
+  @Column("char", { name: "KD_BANK_PERSEPSI", nullable: true, length: 2 })
+  kdBankPersepsi!: string | null;
+
+  @Column("char", { name: "KD_BANK_TUNGGAL", nullable: true, length: 2 })
+  kdBankTunggal!: string | null;
+
+  @Column("char", { name: "KD_KPPBB_BANK", nullable: true, length: 2 })
+  kdKppbbBank!: string | null;
+
+  @Column("char", { name: "KD_KANWIL_BANK", nullable: true, length: 2 })
+  kdKanwilBank!: string | null;
+
+  @Column("char", { name: "BATCH_NUMBER", nullable: true, length: 18 })
+  batchNumber!: string | null;
+}

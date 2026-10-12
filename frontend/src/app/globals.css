@@ -1,0 +1,618 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .geotax-card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-4;
+  }
+  
+  .geotax-card-hover {
+    @apply hover:shadow-md hover:border-primary-300 transition-all duration-200;
+  }
+  
+  .geotax-button-primary {
+    @apply bg-primary-500 hover:bg-primary-600 text-white font-medium px-4 py-2 rounded-md transition-colors duration-200;
+  }
+  
+  .geotax-button-secondary {
+    @apply bg-gray-100 hover:bg-gray-200 text-gray-900 font-medium px-4 py-2 rounded-md transition-colors duration-200;
+  }
+  
+  .geotax-button-accent {
+    @apply bg-accent-500 hover:bg-accent-600 text-black font-medium px-4 py-2 rounded-md transition-colors duration-200;
+  }
+  
+  .geotax-input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+  }
+  
+  .geotax-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .geotax-badge-success {
+    @apply bg-green-100 text-green-800;
+  }
+  
+  .geotax-badge-warning {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+  
+  .geotax-badge-error {
+    @apply bg-red-100 text-red-800;
+  }
+  
+  .geotax-badge-info {
+    @apply bg-blue-100 text-blue-800;
+  }
+}
+
+@layer utilities {
+  .mobile-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  .mobile-margin {
+    @apply mx-4 sm:mx-6 lg:mx-8;
+  }
+  
+  .mobile-text {
+    @apply text-sm sm:text-base;
+  }
+  
+  .mobile-heading {
+    @apply text-lg sm:text-xl lg:text-2xl;
+  }
+  
+  .mobile-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
+  }
+}
+
+.triangle-cluster-wrapper {
+  background: none !important;
+  border: none !important;
+}
+
+.triangle-cluster {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 35px solid #0066FF; 
+  position: relative;
+}
+
+.cluster-count {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.osm-vibrant-style {
+  filter: 
+    hue-rotate(45deg) 
+    saturate(200%) 
+    contrast(135%) 
+    brightness(90%)
+    sepia(20%);
+  transition: filter 0.3s ease;
+}
+
+.osm-vibrant-style:hover {
+  filter: 
+    hue-rotate(20deg) 
+    saturate(1.6) 
+    contrast(1.3) 
+    brightness(1.15)
+    sepia(0.15);
+}
+
+.google-map-style {
+  filter: 
+    hue-rotate(30deg) 
+    saturate(250%) 
+    contrast(55%) 
+    brightness(110%)
+    sepia(15%);
+}
+
+.google-satellite-style {
+  filter: 
+    saturate(1.3) 
+    contrast(1.15) 
+    brightness(1.1)
+    hue-rotate(5deg);
+}
+
+.google-labels-style {
+  filter: 
+    contrast(1.2) 
+    brightness(1.1);
+}
+
+.osm-warm-style {
+  filter: 
+    hue-rotate(30deg) 
+    saturate(1.3) 
+    contrast(1.2) 
+    brightness(1.1)
+    sepia(0.2);
+}
+
+.osm-cool-style {
+  filter: 
+    hue-rotate(-20deg) 
+    saturate(1.4) 
+    contrast(1.25) 
+    brightness(1.05)
+    sepia(0.1);
+}
+
+.osm-natural-style {
+  filter: 
+    hue-rotate(10deg) 
+    saturate(1.2) 
+    contrast(1.15) 
+    brightness(1.08)
+    sepia(0.08);
+}
+
+.osm-dark-style {
+  filter: 
+    brightness(100%) 
+    contrast(150%) 
+    saturate(120%) 
+    hue-rotate(200deg)
+    invert(90%)
+    sepia(20%);
+}
+
+.maptiler-streets-style {
+  filter: 
+    contrast(55%) 
+    saturate(220%) 
+    brightness(120%)
+    hue-rotate(10deg)
+    sepia(10%);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Clean dark scrollbar used inside the AI Copilot panel + expanded table.
+   Overrides the default light scrollbar (track #f1f1f1 / thumb #c1c1c1)
+   which clashes with the dark glass UI. */
+.copilot-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+.copilot-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.copilot-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.copilot-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.copilot-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
+  background-clip: padding-box;
+}
+.copilot-scroll::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Apply the same dark scrollbar to overflow areas inside rendered markdown
+   (tables scroll on x-axis, code blocks on both axes). */
+.copilot-markdown table,
+.copilot-markdown pre {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+.copilot-markdown table::-webkit-scrollbar,
+.copilot-markdown pre::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.copilot-markdown table::-webkit-scrollbar-track,
+.copilot-markdown pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+.copilot-markdown table::-webkit-scrollbar-thumb,
+.copilot-markdown pre::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.copilot-markdown table::-webkit-scrollbar-thumb:hover,
+.copilot-markdown pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
+  background-clip: padding-box;
+}
+.copilot-markdown table::-webkit-scrollbar-corner,
+.copilot-markdown pre::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+.sidebar-main {
+  background-color: #1e293b;
+  border-color: #334155;
+  height: 100vh;
+  display: block;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 30;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+  width: 64px;
+  min-height: 100vh;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.focus-visible {
+  @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+}
+
+.loginbg {
+  background-image: url('/login-hero.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.info-panel-enter {
+  animation: slideInFromLeft 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.info-panel-exit {
+  animation: slideOutToLeft 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.info-panel-instant {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.info-panel-content {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.info-panel-content-entering {
+  opacity: 0;
+}
+
+.info-panel-content-entered {
+  opacity: 1;
+}
+
+.leaflet-control-attribution {
+  position: fixed;
+  bottom: 8px;
+  right: 8px;
+  z-index: 1000 !important;
+  cursor: pointer;
+  background: rgba(15, 23, 42, 0.95) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+  border-radius: 8px !important;
+  padding: 6px 12px !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  color: #e2e8f0 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  transition: all 0.2s ease-in-out !important;
+  font-family: 'Sora', system-ui, sans-serif !important;
+}
+
+.leaflet-control-attribution:hover {
+  background: rgba(30, 41, 59, 0.95) !important;
+  border-color: rgba(59, 130, 246, 0.5) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.leaflet-control-attribution a {
+  color: #FFCC00 !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  transition: color 0.2s ease-in-out !important;
+}
+
+.leaflet-control-attribution a:hover {
+  color: #93c5fd !important;
+  text-decoration: underline !important;
+}
+
+/* ============================================
+   Copilot Markdown Styles (dark theme)
+   ============================================ */
+
+.copilot-markdown {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.copilot-markdown p {
+  margin: 0.4em 0;
+  overflow-wrap: anywhere;
+}
+
+.copilot-markdown p:first-child {
+  margin-top: 0;
+}
+
+.copilot-markdown p:last-child {
+  margin-bottom: 0;
+}
+
+.copilot-markdown strong {
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.copilot-markdown em {
+  font-style: italic;
+  color: #cbd5e1;
+}
+
+/* Headings */
+.copilot-markdown h1,
+.copilot-markdown h2,
+.copilot-markdown h3,
+.copilot-markdown h4 {
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0.8em 0 0.4em;
+  line-height: 1.3;
+}
+
+.copilot-markdown h1 { font-size: 1.15em; }
+.copilot-markdown h2 { font-size: 1.05em; }
+.copilot-markdown h3 { font-size: 0.95em; color: #c4b5fd; }
+.copilot-markdown h4 { font-size: 0.9em; color: #93c5fd; }
+
+.copilot-markdown h1:first-child,
+.copilot-markdown h2:first-child,
+.copilot-markdown h3:first-child,
+.copilot-markdown h4:first-child {
+  margin-top: 0;
+}
+
+/* Tables — scroll horizontally within the bubble instead of widening it.
+   Using display:block + width:max-content is GitHub's pattern: the table
+   takes its natural width, is clipped to the bubble, and scrolls on x. */
+.copilot-markdown table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin: 0.6em 0;
+  font-size: 0.85em;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.copilot-markdown thead th {
+  background: rgba(99, 102, 241, 0.2);
+  color: #c7d2fe;
+  font-weight: 600;
+  text-align: left;
+  padding: 6px 10px;
+  border-bottom: 1px solid rgba(99, 102, 241, 0.3);
+  white-space: nowrap;
+}
+
+.copilot-markdown tbody td {
+  padding: 5px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+  /* Don't break identifiers (like NOPs "64.06.010.001.000.0001.0") at every
+     comma/dot — keep cells single-line and let the table scroll horizontally. */
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.copilot-markdown tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.copilot-markdown tbody tr:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Lists */
+.copilot-markdown ul {
+  list-style: disc;
+  padding-left: 1.3em;
+  margin: 0.4em 0;
+}
+
+.copilot-markdown ol {
+  list-style: decimal;
+  padding-left: 1.3em;
+  margin: 0.4em 0;
+}
+
+.copilot-markdown li {
+  margin: 0.2em 0;
+  color: #cbd5e1;
+}
+
+.copilot-markdown li::marker {
+  color: #818cf8;
+}
+
+/* Inline code */
+.copilot-markdown code {
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.88em;
+  font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
+}
+
+/* Code blocks */
+.copilot-markdown pre {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 0.5em 0;
+  overflow-x: auto;
+}
+
+.copilot-markdown pre code {
+  background: none;
+  padding: 0;
+  color: #e2e8f0;
+  font-size: 0.82em;
+}
+
+/* Blockquotes */
+.copilot-markdown blockquote {
+  border-left: 3px solid #6366f1;
+  padding-left: 12px;
+  margin: 0.5em 0;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+/* Links */
+.copilot-markdown a {
+  color: #818cf8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.copilot-markdown a:hover {
+  color: #a5b4fc;
+}
+
+/* Horizontal rules */
+.copilot-markdown hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 0.8em 0;
+}
