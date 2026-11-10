@@ -27,7 +27,7 @@ export const PostFotoPersil = async (req: Request, res: Response) => {
     }
 
     // Step 1: Delete all existing photos for this NOP
-    const prefix = `fotopersil_gorontalo/${nop}_`;
+    const prefix = `fotopersil_bonebol/${nop}_`;
     const listCommand = new ListObjectsV2Command({
       Bucket: bucketName,
       Prefix: prefix,
@@ -53,7 +53,7 @@ export const PostFotoPersil = async (req: Request, res: Response) => {
       const extension = file.originalname.split(".").pop();
       const paddedNumber = (index + 1).toString();
       const filename = `${nop}_${paddedNumber}.${extension}`;
-      const key = `fotopersil_gorontalo/${filename}`;
+      const key = `fotopersil_bonebol/${filename}`;
 
       const putCommand = new PutObjectCommand({
         Bucket: bucketName,

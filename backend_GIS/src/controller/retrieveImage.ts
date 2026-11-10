@@ -5,18 +5,18 @@ import s3 from "../utils/s3";
 export const checkfotopersil = async (req: Request, res: Response) => {
   const { filename } = req.params;
   const bucket = process.env.AWS_S3_BUCKET_NAME;
-  const prefix = `fotopersil_gorontalo/${filename}`; // tanpa ekstensi
+  const prefix = `fotopersil_bonebol/${filename}`; // tanpa ekstensi
 
   try {
     const listCommand = new ListObjectsV2Command({
       Bucket: bucket,
-      Prefix: prefix, // akan cocokkan semua file yang diawali "fotopersil_gorontalo/filename"
+      Prefix: prefix, // akan cocokkan semua file yang diawali "fotopersil_bonebol/filename"
       MaxKeys: 10,
     });
 
     const result = await s3.send(listCommand);
 
-    const match = result.Contents?.find((obj) => obj.Key?.match(new RegExp(`^fotopersil_gorontalo/${filename}\\.(jpg|jpeg|png|webp|bmp|gif)$`, "i")));
+    const match = result.Contents?.find((obj) => obj.Key?.match(new RegExp(`^fotopersil_bonebol/${filename}\\.(jpg|jpeg|png|webp|bmp|gif)$`, "i")));
 
     if (!match) {
       return res.status(200).json({ exists: false });
@@ -42,7 +42,7 @@ export const GetFotoPersil = async (req: Request, res: Response) => {
     }
 
     const bucketName = process.env.AWS_S3_BUCKET_NAME!;
-    const prefix = `fotopersil_gorontalo/${nop}_`;
+    const prefix = `fotopersil_bonebol/${nop}_`;
 
     const command = new ListObjectsV2Command({
       Bucket: bucketName,
