@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 import { redis } from "./utils/redis";
 
 const app = express();
+app.set("trust proxy", 1);
 
 app.use(cookieParser(process.env.COOKIES_SECRET));
 app.use(express.json());
